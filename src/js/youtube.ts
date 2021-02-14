@@ -1,4 +1,4 @@
 import '../css/scss/pages/google/style.scss'
 
-let data = 'xergioalexxxx'
+let data: string = 'Youtube'
 console.log(data)

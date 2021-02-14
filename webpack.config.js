@@ -3,30 +3,31 @@ const webpack = require('webpack')
 const TerserPlugin = require('terser-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const HtmlPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 module.exports = (env, argv) => {
   const devServerPort = '9000';
   let devServerHost = 'localhost';
   let outputPublicPath = 'dist/';
-  let htmlPluginPrefix = 'dist/pages/[name]/';
+  let HtmlWebpackPluginPrefix = 'dist/pages/[name]/';
   if (!!process.env.DOCKER_SERVER) {
     devServerHost = '0.0.0.0';
   }
   if (env && env.mode === 'server') {
-    htmlPluginPrefix = '';
+    HtmlWebpackPluginPrefix = '';
     outputPublicPath = `http://localhost:${devServerPort}/`
   }
 
   // Webpack configuration
   let config = {
     entry: {
-      google: path.resolve(__dirname, 'src/js/google.ts')
+      google: path.resolve(__dirname, 'src/js/google.ts'),
+      youtube: path.resolve(__dirname, 'src/js/youtube.ts')
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'js/[name].js',
+      filename: 'js/[name].[fullhash].js',
       publicPath: outputPublicPath,
     },
     watch: true,
@@ -37,12 +38,6 @@ module.exports = (env, argv) => {
       port: devServerPort,
       open: true,
       hot: false,
-      // contentBase: './src',
-      // watchContentBase: true,
-      // watchOptions: {
-      //   poll: true
-      // },
-      // inline: true,
       liveReload: true
     },
     optimization: {
@@ -69,19 +64,19 @@ module.exports = (env, argv) => {
           loader: 'ts-loader',
           exclude: /node_modules/,
         },
-        // {
-        //   test: /\.(jpg|png|woff|eot|ttf|svg|ico)$/,
-        //   use: {
-        //     loader: 'url-loader',
-        //     options: {
-        //       limit: 10000,
-        //       name: (absoluteUrl) => {
-        //         const urlSplit = absoluteUrl.split('/')
-        //         return `${urlSplit[urlSplit.length-2]}/[name].[hash].[ext]`
-        //       }
-        //     }
-        //   }
-        // },
+        {
+          test: /\.(jpg|png|woff|eot|ttf|svg|ico)$/,
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: (absoluteUrl) => {
+                const urlSplit = absoluteUrl.split('/')
+                return `${urlSplit[urlSplit.length-2]}/[name].[hash].[ext]`
+              }
+            }
+          }
+        },
         {
           test: /\.s[ac]ss$/i,
           use: [
@@ -109,9 +104,13 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: 'css/[name].[hash].css'
       }),
-      new HtmlPlugin({
-        filename: `pages/[name]/index.html`,
+      new HtmlWebpackPlugin({
+        filename: `pages/google/index.html`,
         template: 'src/pages/google/index.html',
+      }),
+      new HtmlWebpackPlugin({
+        filename: `pages/youtube/index.html`,
+        template: 'src/pages/youtube/index.html',
       }),
     ],
   }

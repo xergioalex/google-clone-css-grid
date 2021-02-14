@@ -1,4 +1,4 @@
 import '../css/scss/pages/google/style.scss'
 
-let data: string = 'xergioalexxxxddddddsdds  dsfd'
+let data: string = 'Finally'
 console.log(data)
