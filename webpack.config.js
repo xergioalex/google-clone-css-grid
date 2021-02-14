@@ -22,12 +22,12 @@ module.exports = (env, argv) => {
   // Webpack configuration
   let config = {
     entry: {
-      google: path.resolve(__dirname, 'src/js/google.ts'),
-      youtube: path.resolve(__dirname, 'src/js/youtube.ts')
+      google: path.resolve(__dirname, 'src/pages/google/js/main.ts'),
+      youtube: path.resolve(__dirname, 'src/pages/youtube/js/main.ts')
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'js/[name].[fullhash].js',
+      filename: 'pages/[name]/js/main.[fullhash].js',
       publicPath: outputPublicPath,
     },
     watch: true,
@@ -102,15 +102,17 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: 'css/[name].[hash].css'
+        filename: 'pages/[name]/css/styles.[hash].css'
       }),
       new HtmlWebpackPlugin({
         filename: `pages/google/index.html`,
         template: 'src/pages/google/index.html',
+        chunks : ['google'],
       }),
       new HtmlWebpackPlugin({
         filename: `pages/youtube/index.html`,
         template: 'src/pages/youtube/index.html',
+        chunks : ['youtube'],
       }),
     ],
   }

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "./dist/pages/",
     "sourceMap": true,
     "module": "commonjs",
     "moduleResolution": "node",
