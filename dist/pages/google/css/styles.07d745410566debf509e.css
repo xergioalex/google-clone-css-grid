@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  font-family: 'arial', sans-serif; }
+
+.figure {
+  margin: 0; }
+
+p {
+  color: blue;
+  font-size: 20px; }
+
+.container {
+  display: grid;
+  grid-template-areas: "header" "content" "footer";
+  grid-template-rows: 60px 1fr 95px;
+  height: 100vh; }
+
+header {
+  grid-area: header; }
+
+.content {
+  grid-area: content; }
+
+footer {
+  grid-area: footer; }
+

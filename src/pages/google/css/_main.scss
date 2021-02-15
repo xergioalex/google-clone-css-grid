@@ -1,0 +1,8 @@
+.container {
+  display: grid;
+  grid-template-areas: "header"
+                        "content"
+                        "footer";
+  grid-template-rows: 60px 1fr 95px;
+  height: 100vh;
+}

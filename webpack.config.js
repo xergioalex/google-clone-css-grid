@@ -71,8 +71,19 @@ module.exports = (env, argv) => {
             options: {
               limit: 10000,
               name: (absoluteUrl) => {
-                const urlSplit = absoluteUrl.split('/')
-                return `${urlSplit[urlSplit.length-2]}/[name].[hash].[ext]`
+                const urlSplit = (absoluteUrl).split('/')
+                const pagesIndex = urlSplit.findIndex((item) => item === 'pages')
+                const path = urlSplit.slice(pagesIndex, urlSplit.length-1).join('/')
+                return `${path}/[name].[hash].[ext]`
+              },
+              publicPath: (fileName) => {
+                const urlSplit = (fileName).split('/')
+                const pagesIndex = urlSplit.findIndex((item) => item === 'assets')
+                if (env && env.mode === 'server') {
+                  return `${outputPublicPath}${fileName}`
+                } else {
+                  return urlSplit.slice(pagesIndex, urlSplit.length).join('/')
+                }
               }
             }
           }
@@ -94,10 +105,35 @@ module.exports = (env, argv) => {
           use: {
             loader: 'html-loader',
             options: {
-              minimize: false
+              minimize: false,
             }
           }
-        }
+        },
+        // {
+        //   test: /\.(png|jpe?g|gif)$/i,
+        //   use: [
+        //     {
+        //       loader: 'file-loader',
+        //       options: {
+        //         outputPath: 'pages/',
+        //         regExp: /.*\/([a-z0-9]+)\/([a-z0-9]+)\/([a-z0-9]+)\/[^.]+\.[^.]+$/i,
+        //         name: '[1]/[2]/[3]/[name].[ext]',
+        //         esModule: false,
+        //       },
+        //     },
+        //   ],
+        // },
+        // {
+        //   test: /\.(png|jpe?g|gif)$/i,
+        //   use: [
+        //     {
+        //       loader: 'url-loader',
+        //       options: {
+        //         limit: false,
+        //       },
+        //     },
+        //   ],
+        // },
       ]
     },
     plugins: [
@@ -125,3 +161,8 @@ module.exports = (env, argv) => {
 
   return config
 }
+
+
+urlSplit = ('/home/ads/ads/asdsad/pages/google/asdsfd/sadfsd/hol.jpg').split('/')
+index = urlSplit.findIndex((item) => item === 'pages')
+urlSplit.slice(index, urlSplit.length-1).join('/')
