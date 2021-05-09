@@ -19,7 +19,10 @@ header {
   grid-area: header; }
 
 .content {
-  grid-area: content; }
+  grid-area: content;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
 
 footer {
   grid-area: footer; }
