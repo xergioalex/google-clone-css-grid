@@ -1,3 +1,22 @@
 header {
+  font-size: 13px;
   grid-area: header;
+  padding: 0 25px;
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    line-height: 24px;
+    align-items: center;
+    height: 100%;
+    gap: 15px;
+    line-height: 32px;
+    .nav-item {
+      height: 32px;
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+      }
+    }
+  }
 }
