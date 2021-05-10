@@ -1,6 +1,48 @@
 .content {
   grid-area: content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding-top: 40px;
+  width: 100%;
+  figure {
+    margin: 0;
+    display: block;
+    text-align: center;
+  }
+  .form-search {
+    width: 100%;
+    .form-group {
+      padding: 24px 20px 20px 20px;
+      display: block;
+      text-align: center;
+      .input-wrapper {
+        max-width: 586px;
+        margin: 0 auto;
+        display: block;
+        position: relative;
+        .search-icon {
+          position: absolute;
+          top: 13px;
+          left: 16px;
+          width: 20px;
+          opacity: 0.4;
+        }
+        input {
+          border: 1px solid lighten($c_gray, 65%);
+          width: 100%;
+          border-radius: 24px;
+          padding: 12px 20px 12px 48px;
+          font-size: 16px;
+          line-height: 20px;
+          box-sizing: border-box; 
+          &:focus-visible {
+            outline: none;
+          }
+          &:hover {
+            background-color: $c_white;
+            box-shadow: 0 1px 6px rgba(32,33,36,.28);
+            border-color: rgba(223,225,229,0);
+          }
+        }
+      }
+    }
+  }
 }
