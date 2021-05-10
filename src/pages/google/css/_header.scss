@@ -13,6 +13,9 @@ header {
       height: 40px;
       display: flex;
       align-items: center;
+      a {
+        color: $c_black;
+      }
       &.nav-menu {
         position: relative;
         &:hover {

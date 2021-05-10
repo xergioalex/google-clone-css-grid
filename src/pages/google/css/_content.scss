@@ -10,7 +10,7 @@
   .form-search {
     width: 100%;
     .form-group {
-      padding: 24px 20px 20px 20px;
+      padding: 24px 20px 30px 20px;
       display: block;
       text-align: center;
       .input-wrapper {
@@ -42,6 +42,32 @@
             border-color: rgba(223,225,229,0);
           }
         }
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      gap: 8px;
+      a {
+        text-decoration: none;
+        border: 1px solid #f8f9fa;
+        height: 34px;
+        line-height: 34px;
+        padding: 0 16px;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+        color: lighten($c_black, 40%);
+        &:hover {
+          box-shadow: 0 1px 1px rgba(0,0,0,.1);
+          border: 1px solid #dadce0;
+        }
+      }
+    }
+    .extra-language-info {
+      text-align: center;
+      a {
+        color: $c_link;
       }
     }
   }

@@ -1,3 +1,29 @@
 footer {
   grid-area: footer;
+  background-color: $c_bg_gray;
+  color: lighten($c_black, 54%);
+
+  .section-country {
+    padding: 16px 30px;
+    border-bottom: 1px solid #dadce0;
+    p {
+      margin: 0;
+    }
+  }
+  .section-links {
+    display: flex;
+    line-height: 45px;
+    a {
+      padding: 15px;
+      color: lighten($c_black, 54%);
+    }
+    .general-links {
+      text-align: right;
+      flex: 50%;
+    }
+    .privacy-links {
+      text-align: center;
+      flex: 50%;
+    }
+  }
 }
