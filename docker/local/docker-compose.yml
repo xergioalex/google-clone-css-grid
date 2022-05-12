@@ -1,11 +1,10 @@
 version: '3'
 
 volumes:
-  dynamodb_data: {}
   vscode_ssh: {}
 
 services:
-  app: &app
+  app_vscode:
     build:
       context: .
       dockerfile: ./app/Dockerfile
@@ -15,22 +14,8 @@ services:
       - vscode_ssh:/root/.ssh
     env_file:
       - app/.env
-    command:
-      - /bin/sh
-      - -c
-      - |
-        npm install
-        chown -R ${SERVICE_PERMISSIONS} /home/node/app
-        npm offline
-    ports:
-      - "8080:8080"
     environment:
       - DOCKER_SERVER=true
-    networks:
-      - external_network
-
-  app_vscode:
-    <<: *app
     command:
       - /bin/sh
       - -c
@@ -39,6 +24,8 @@ services:
         sleep infinity
     networks:
       - external_network
+    ports:
+      - "8100:8100"
 
 networks:
   external_network:

@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 module.exports = (env, argv) => {
-  const devServerPort = '9000';
+  const devServerPort = 8100;
   let devServerHost = 'localhost';
   let outputPublicPath = 'dist/';
   let HtmlWebpackPluginPrefix = 'dist/pages/[name]/';
@@ -37,7 +37,7 @@ module.exports = (env, argv) => {
       host: devServerHost,
       port: devServerPort,
       open: true,
-      hot: false,
+      hot: true,
       liveReload: true
     },
     optimization: {
